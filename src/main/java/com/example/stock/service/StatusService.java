@@ -43,8 +43,11 @@ public class StatusService {
 	}
 	
 	
-    public List<Status> findByLike() {
-		return statusDao.findByLike();
+//    public List<Status> findByLike() {
+//		return statusDao.findByLike();
+//	}
+	public Iterable<Status> findByLikes(Boolean likes){
+		return statusDao.findByLikes(likes);
 	}
 
 	public int save(Status status) {
@@ -68,5 +71,19 @@ public class StatusService {
 	public int deleteByCode(String code) {
 		return statusDao.deleteByCode(code);
 	}
+
+	public int update(Status status) {
+		 if (findByCode(status.getCode()) == null) {
+	            return -1;
+	        }
+//	        User user = userService.findByLogin(status.getUser().getLogin());
+//	        status.setUser(user);
+//	        if(user == null) {
+//	        	return -2;
+//	        }
+//	        userService.update(user);
+	        statusDao.save(status);
+	        return 1;
+	    }	
 	
 }

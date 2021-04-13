@@ -28,7 +28,9 @@ public interface StatusDao extends JpaRepository<Status, Long> {
 	public Status findBydateStatus( String dateStatus);
 	@Transactional
 	public int deleteByCode(String code);
-	 
-	@Query("SELECT s from Status s WHERE s.likes LIKE 'true' ")
-	public List<Status> findByLike();
+
+//	@Query("from Status  WHERE likes =1 ")
+//	@Query("SELECT  id code contenu totalJaime totalCommentaire dateStatus likes from status s WHERE likes = 1 ")
+	@Query
+	public Iterable<Status> findByLikes(Boolean likes);
 }
